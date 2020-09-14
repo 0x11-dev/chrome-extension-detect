@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        pre {
+            border-left: 2px #666 solid;
+            line-height: 1.5em;
+            padding: 1em;
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var assets = {
+            'youdao': 'chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png',
+            'huacifanyi': 'chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/logo.png'
+        }
+        function log(text) {
+            var t = document.createElement('pre')
+            t.innerText = text;
+            document.body.insertBefore(t, document.body.firstChild)
+        }
+        function detect(vendor) {
+            return new Promise((resolve, reject) => {
+                var img = new Image()
+                img.onload = () => {
+                    resolve(true)
+                }
+                img.onerror = () => {
+                    resolve(false)
+                }
+                img.src = assets[vendor]
+                // console.log(img.src)
+            })
+        }
+
+        for (let v of ['youdao', 'huacifanyi']) {
+            detect(v).then((result) => {
+                log(`chrome extension "${v}": ${result ? 'installed' : 'not installed!'}`)
+                console.info(`plugin ${v}: ${result ? 'installed' : 'not installed!'}`)
+            })
+        }
+    </script>
+    <p>Here’s to the crazy ones.</p>
+    <p>The misfits. The rebels. The troublemakers. The round pegs in the square holes. The ones who see things</p>
+    <p>differently.</p>
+    <p>They’re not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them,
+    </p>
+    <p>glorify or vilify them. About the only thing you can’t do is ignore them.</p>
+    <p>Here’s to the crazy ones.</p>
+    <p>The misfits. The rebels. The troublemakers. The round pegs in the square holes. The ones who see things</p>
+    <p>differently.</p>
+    <p>They’re not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them,
+    </p>
+    <p>glorify or vilify them. About the only thing you can’t do is ignore them.</p>
+    <p>Because they change things. They push the human race forward. And while some may see them as the crazy ones, we
+    </p>
+    <p>see genius. Because the people who are crazy enough to think they can change the world, are the ones who do.</p>
+</body>
+
+</html>
